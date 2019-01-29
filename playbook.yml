@@ -1,0 +1,17 @@
+---
+- name: install and restart
+  hosts: all
+  become: yes
+  vars:
+   http_port: 80
+
+  tasks:
+  - name: latest httpd
+    yum:
+     name: httpd
+     state: latest
+
+  - name: latest index.html
+    copy:
+     src: files/index.html
+     dest: /var/www/html/
